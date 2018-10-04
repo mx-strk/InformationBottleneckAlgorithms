@@ -4,7 +4,7 @@
 
 In its pure form, the information bottleneck method is an unsupervised clustering framework which was first proposed in [TPB99].
 Despiting having its origin in machine learning, recently, the information bottleneck method attracted lots of attention in several problems related to communications engineering and digital signal processing. 
-Applications range from LDPC decoding [LSB16b, LB18, SLB18], receiver design [LSB16], polar code construction [SSB18] to relaying [KK17], C-RAN [CK16], source coding [] and sensor networks [SLB18]. 
+Applications range from LDPC decoding [LSB16b, LB18, SLB18], receiver design [LSB16], polar code construction [SSB18] to relaying [KK17], C-RAN [CK16], source coding and sensor networks [SLB18]. 
 
 All these systems are designed to combine coarse quantization and high performance by leveraging the concept of relevant information which is closely related to the information bottleneck method. Applying the information bottleneck method to design signal processing units is termed relevant-information-preserving signal processing [BLS+18].
 
