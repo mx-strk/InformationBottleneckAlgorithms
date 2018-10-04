@@ -36,9 +36,10 @@ A detailed investigation of these algorithm is presented in [HWD17]. A more deta
 
 ### Citation
 
-The code is distributed under the license ... . When using the code for your publication please cite this repo as
+The code is distributed under the MIT license. When using the code for your 
+publication please cite this repo as
 
-[SLB18] "Information Bottleneck Algorithms in Python", URL 
+[SLB18] "Information Bottleneck Algorithms in Python", https://collaborating.tuhh.de/cip3725/ib_base/ 
 
 ### References
 [TPB99] N. Tishby, F. C. Pereira, and W. Bialek, “The information bottleneck method,” in 37th annual Allerton Conference on Communication, Control, and Computing, 1999, pp. 368–377.
