@@ -1,0 +1,14 @@
+*.zip
+
+\.idea/
+\.build/
+\.dist/
+*.pyc
+/build/lib.win-amd64-3.6/information_bottleneck/information_bottleneck_algorithms/GF_q_KLmeans_sym_IB_class.py
+/build/lib.win-amd64-3.6/information_bottleneck/information_bottleneck_algorithms/GF_q_KLmeansIB_class.py
+/build/lib.win-amd64-3.6/information_bottleneck/information_bottleneck_algorithms/lin_sym_sIB_class.py
+/build/lib.win-amd64-3.6/information_bottleneck/information_bottleneck_algorithms/mod_aIB_class.py
+/build/lib.win-amd64-3.6/information_bottleneck/information_bottleneck_algorithms/mod_GFq_sIB_class.py
+/dist/ib_base-1.0-py3.6-win-amd64.egg
+/ib_base.egg-info/PKG-INFO
+/ib_base.egg-info/SOURCES.txt
