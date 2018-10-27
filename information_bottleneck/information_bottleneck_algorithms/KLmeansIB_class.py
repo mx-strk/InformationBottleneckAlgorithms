@@ -192,8 +192,6 @@ class KLmeansIB(GenericIB):
         if to_devive:
             self.p_x_given_t_buffer = cl_array.to_device(self.queue, self.p_x_given_t,allocator=self.mem_pool)
 
-        #start = time.time()
-        ##### speed up test ###
         self.dkl_compute_prog(self.queue, (self.cardinality_Y, self.cardinality_T), None,
                               self.cardinality_T,
                               self.cardinality_Y,
@@ -203,18 +201,6 @@ class KLmeansIB(GenericIB):
                               self.dkl_mat_buffer.data)
 
         self.queue.finish()
-        # local_res = self.kl_divergence_mat_col(self.p_x_given_y,self.p_x_and_t)
-        ## check dkl_mats
-        ## print(np.linalg.norm(self.dkl_mat_buffer.get()-local_res))
-
-        # self.find_argmin_prog(self.queue, (self.cardinality_Y,),
-        #                       None,
-        #                       self.cardinality_T,
-        #                       self.cardinality_Y,
-        #                       self.dkl_mat_buffer.data,
-        #                       self.p_t_given_y_buffer.data
-        #                       )
-
         self.find_argmin_prog(self.queue, (self.cardinality_Y,),
                               None,
                               self.cardinality_T,
@@ -222,31 +208,7 @@ class KLmeansIB(GenericIB):
                               self.dkl_mat_buffer.data,
                               self.argmin_buffer.data
                               )
-
-        # local_argmin = np.argmin(local_res, axis=1)
-        # check argmins
-        # print(np.linalg.norm(self.argmin_buffer.get() - local_argmin))
         self.queue.finish()
-
-        #end = time.time()
-        #print("time after speed up:", end-start)
-
-        #start = time.time()
-        ### end speed up test ########
-        # self.compute_argmin_dkl_mat_prog(self.queue, (self.cardinality_Y,),
-        #                                  None,
-        #                                  self.cardinality_T,
-        #                                  self.cardinality_Y,
-        #                                  self.cardinality_X,
-        #                                  self.p_x_given_t_buffer.data,
-        #                                  self.p_x_given_y_buffer.data,
-        #                                  self.p_t_given_y_buffer.data)
-
-        #end = time.time()
-        #print("time before speed up:", end - start)
-        #self.queue.finish()
-
-        #start = time.time()
         self.allow_move_prog(self.queue, (1,),
                              None,
                              self.cardinality_Y,
@@ -255,16 +217,6 @@ class KLmeansIB(GenericIB):
                              self.length_vec_buffer.data
                              )
         self.queue.finish()
-
-        # opencl_len = self.length_vec_buffer.get()
-        # local_len = np.zeros(self.cardinality_T)
-        # for t in range(self.cardinality_T):
-        #     local_len[t] = np.sum(self.p_t_given_y_buffer.get()==t)
-
-        #print(np.linalg.norm(opencl_len-local_len))
-        #assert (np.linalg.norm(opencl_len-local_len))==0
-        #end = time.time()
-        #print("time before of check_if_cluster_empty_prog:", end - start)
         if to_host:
             return self.p_t_given_y_buffer.get()
 
@@ -340,7 +292,6 @@ class KLmeansIB(GenericIB):
         I_TX_winner = 0
 
         # run for-loop for each number of run
-        #bar = progressbar.ProgressBar()
         bar = progressbar.ProgressBar(widgets=[
             ' [', progressbar.Timer(), '] ',
             progressbar.Bar(),
@@ -349,8 +300,7 @@ class KLmeansIB(GenericIB):
 
         for run in bar(range(0, self.nror)):
 
-            # Beginn initialization
-            
+            # Begin initialization
             if self.symmetric_init:
                 self.p_t_given_y = np.zeros((self.cardinality_Y, self.cardinality_T))
                 # Initialization of p_t_given_y
@@ -416,11 +366,9 @@ class KLmeansIB(GenericIB):
 
                 ### OPENCL Routine
                 # estimation step
-                #p_t_given_y = self.estimate_opencl(to_devive=True, to_host=True)
                 self.estimate_opencl()
                 # update step
                 self.p_t, self.p_x_given_t = self.update_distributions_opencl()
-
                 p_xt = self.p_x_given_t * self.p_t[:, np.newaxis]
                 new_MI = inf_tool.mutual_information(p_xt)
                 self.I_TX_evolution_list[run].append(new_MI)
@@ -449,8 +397,8 @@ class KLmeansIB(GenericIB):
 
         # choose the run maximizing the Information Bottleneck functional
         winner = np.argmax(ib_fct)
-        print('Winner finished in ', counter_vec[winner], ' iterations.')
-        print('Average number of iterations to finished:', np.mean(counter_vec), )
+        #print('Winner finished in ', counter_vec[winner], ' iterations.')
+        #print('Average number of iterations to finish:', np.mean(counter_vec), )
         #p_t_given_y_winner = p_t_given_y_mats[:, :, winner].squeeze()
 
         # blow up p(t|y)

@@ -3,13 +3,20 @@
 ### Introduction and Motivation
 
 In its pure form, the information bottleneck method is an unsupervised clustering framework which was first proposed in [TPB99].
-Despiting having its origin in machine learning, recently, the information bottleneck method attracted lots of attention in several problems related to communications engineering and digital signal processing. 
-Applications range from LDPC decoding [LSB16b, LB18, SLB18], receiver design [LSB16], polar code construction [SSB18] to relaying [KK17], C-RAN [CK16], source coding and sensor networks [SLB18]. 
+Despiting having its origin in machine learning, recently, the information bottleneck method attracted lots of attention in several problems related to communications engineering and digital signal processing.
+Applications range from LDPC decoding [LSB16b, LB18, SLB18], receiver design [LSB16], polar code construction [SSB18] to relaying [KK17], C-RAN [CK16], source coding and sensor networks [SLB18].
 
 All these systems are designed to combine coarse quantization and high performance by leveraging the concept of relevant information which is closely related to the information bottleneck method. Applying the information bottleneck method to design signal processing units is termed relevant-information-preserving signal processing [BLS+18].
 
 Nevertheless, we noticed that the lack of public available information bottleneck algorithms discourages people to try to transform their signal processing chain into a relevant-information-preserving one.
-Thus, this collection of information bottleneck algorithm is intended to facilitate you, to incorporate the information bottleneck method in your problem. 
+Thus, this collection of information bottleneck algorithm is intended to facilitate you, to incorporate the information bottleneck method in your problem.
+
+### Citation
+
+The code is distributed under the MIT license. When using the code for your publication or research please cite this repo as
+
+[SL18] M.Stark, J.Lewandowsky "Information Bottleneck Algorithms in Python", https://goo.gl/QjBTZf
+
 
 ### Installation
 
@@ -17,10 +24,10 @@ Thus, this collection of information bottleneck algorithm is intended to facilit
 2. Clone the git repository
 3. Run python setup.py install to install the ib_base package.
 4. Installation requires the following packages:
-  * numpy 
-  * pyopencl.2018 
-  * mako 
-  * progressbar
+  * numpy
+  * [PyOpenCl.2018](https://documen.tician.de/pyopencl/misc.html)
+  * mako
+  * [progressbar2](https://pypi.org/project/progressbar2/)
   * cython
 
 ### Algorithms and Documentation
@@ -34,12 +41,8 @@ This repository contains the following information bottleneck algorithm:
 
 A detailed investigation of these algorithm is presented in [HWD17]. A more detailed documentation of all provided functions and a more complete test suite will be available soon.
 
-### Citation
-
-The code is distributed under the MIT license. When using the code for your 
-publication please cite this repo as
-
-[SLB18] "Information Bottleneck Algorithms in Python", https://collaborating.tuhh.de/cip3725/ib_base/ 
+### How To
+A Jupyter Notebook which interactively explains the usage of the algorithms can be found in the folder "Examples"
 
 ### References
 [TPB99] N. Tishby, F. C. Pereira, and W. Bialek, “The information bottleneck method,” in 37th annual Allerton Conference on Communication, Control, and Computing, 1999, pp. 368–377.

@@ -176,7 +176,6 @@ class aIB(GenericIB):
 
         # delete row in p(x|t)
         # update p(t)
-
         self.p_t[target] = self.p_t[target] + self.p_t[remove]
         self.p_t = np.delete(self.p_t, remove, axis=0)
 

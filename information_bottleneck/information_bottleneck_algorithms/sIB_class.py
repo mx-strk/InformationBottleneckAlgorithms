@@ -162,7 +162,6 @@ class sIB(GenericIB):
 
         # choose the run maximizing the Information Bottleneck functional
         winner = np.argmax(ib_fct)
-
         self.p_t_given_y = p_t_given_y_mats[:, :, winner].squeeze()
         self.p_x_given_t = p_x_given_t_mats[:, :, winner].squeeze()
         self.p_t = p_t_mats[:, :, winner].squeeze()
