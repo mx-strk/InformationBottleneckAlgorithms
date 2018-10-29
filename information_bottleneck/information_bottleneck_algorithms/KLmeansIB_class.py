@@ -61,25 +61,6 @@ class KLmeansIB(GenericIB):
         #self.sort_events_by_cog_idcs()
 
 
-        self.deleted_rows = list()
-        self.not_deleted_rows = list()
-
-    def kill_zero_probs(self, epsilon=0):
-        for row_idx, row in enumerate(self.p_x_y):
-            if row.sum() <= epsilon:
-                self.deleted_rows.append(row_idx)
-            else:
-                self.not_deleted_rows.append(row_idx)
-
-        self.p_x_y = self.p_x_y[self.not_deleted_rows, :]
-
-    def restore_zero_probs(self):
-        p_t_given_y = np.zeros((self.deleted_rows.__len__() + self.not_deleted_rows.__len__(), self.cardinality_T))
-        p_t_given_y[self.not_deleted_rows, :] = self.p_t_given_y[:, :]
-        p_t_given_y[self.deleted_rows, np.random.random_integers(0, self.cardinality_T - 1)] = 1
-
-        self.p_t_given_y = p_t_given_y.copy()
-
     def kl_divergence_mat_col(self,pdf1, pdf2):
         KL_div = np.zeros((pdf1.shape[0], pdf2.shape[0]))
 
@@ -264,14 +245,8 @@ class KLmeansIB(GenericIB):
         return self.p_t_buffer.get(), self.p_x_given_t_buffer.get()
 
     def run_IB_algo(self,set_mem_pool_None = False):
-        self.kill_zero_probs(epsilon=1e-10)
-
-        #self.KL_means_algo()
-        #self.sort_events_by_cog_idcs()
         self.KL_means_algo_opencl(set_mem_pool_None = set_mem_pool_None)
         self.sort_clusters_by_cog_idcs()
-
-        self.restore_zero_probs()
 
     def KL_means_algo_opencl(self, set_mem_pool_None = False):
         """ This function tries to minimize the information bottleneck functional using a KL means_algorithm."""
@@ -397,9 +372,6 @@ class KLmeansIB(GenericIB):
 
         # choose the run maximizing the Information Bottleneck functional
         winner = np.argmax(ib_fct)
-        #print('Winner finished in ', counter_vec[winner], ' iterations.')
-        #print('Average number of iterations to finish:', np.mean(counter_vec), )
-        #p_t_given_y_winner = p_t_given_y_mats[:, :, winner].squeeze()
 
         # blow up p(t|y)
         self.p_t_given_y = np.zeros((self.cardinality_Y, self.cardinality_T))
@@ -512,21 +484,11 @@ class KLmeansIB(GenericIB):
             counter = 0
             # repeat until stable solution found
             while np.abs(old_MI-new_MI)>1e-11 and counter<self.cardinality_T*10:
-                #print(np.abs(old_MI-new_MI))
                 counter += 1
                 old_MI = new_MI
 
                 # estimation step
                 p_t_given_y = self.estimate()
-
-                #update step
-                # for t in range(self.cardinality_T):
-                #     indices = np.where(p_t_given_y == t)[0]
-                #     # calculate p(t)
-                #     self.p_t[t] = self.p_y[indices].sum(0)
-                #     # calculate p(x|t)
-                #     self.p_x_and_t[t, :] = (1 / self.p_t[t]) * self.p_x_y[indices, :].sum(0)
-                #
 
                 for t in range(self.cardinality_T):
                     indices = np.where(p_t_given_y == t)[0]
@@ -537,7 +499,6 @@ class KLmeansIB(GenericIB):
                         self.p_x_given_t[t, :] = (1 / self.p_t[t]) * self.p_x_y[int(indices), :]
                     else:
                         # grab one entry from each cluster
-                        #smallest_contribution = np.argmin(self.p_y[indices])
                         self.last_resort[t] = indices[-1]
                         # calculate p(t)
                         self.p_t[t] = self.p_y[indices].sum(0)
@@ -547,7 +508,6 @@ class KLmeansIB(GenericIB):
 
                 p_xt = self.p_x_given_t * self.p_t[:, np.newaxis]
                 new_MI = inf_tool.mutual_information(p_xt)
-                #print('Preserved MI:',new_MI)
 
             self.p_t_given_y = np.zeros((self.cardinality_Y, self.cardinality_T ))
             self.p_t_given_y[:,p_t_given_y] = 1
@@ -559,7 +519,6 @@ class KLmeansIB(GenericIB):
             p_xt = self.p_x_given_t[:self.cardinality_T,:] * self.p_t[:, np.newaxis]
             p_xt = p_xt/p_xt.sum()
 
-            #print('is p(x,t) valid?:',np.sum(p_xt))
             I_TX[run] = inf_tool.mutual_information(p_xt)
             ib_fct[run] = I_TX[run]
 
