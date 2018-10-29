@@ -44,9 +44,7 @@ A detailed investigation of these algorithm is presented in [HWD17]. A more deta
 ### How To
 A Jupyter Notebook which interactively explains the usage of the algorithms can be found in the folder "Examples".
 You can also run the Notebooks in your Browser
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/git/https%3A%2F%2Fcollaborating.tuhh.de%2Fcip3725%2Fib_base.git/d1b497104abcaf0fb11b48ebf762aaf21dc95b4e?filepath=Examples%2FAWGNQuantizer.ipynb)
-
-
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/git/https%3A%2F%2Fcollaborating.tuhh.de%2Fcip3725%2Fib_base.git/0a1f4f66a1a3c29ff347b2abc79bb292b0be17ca?filepath=Examples%2FAWGNQuantizer.ipynb)
 
 ### References
 [TPB99] N. Tishby, F. C. Pereira, and W. Bialek, “The information bottleneck method,” in 37th annual Allerton Conference on Communication, Control, and Computing, 1999, pp. 368–377.
