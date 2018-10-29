@@ -2,11 +2,11 @@ name: ib_base-environment
 channels:
 - conda-forge
 dependencies:
-- python3.6
+- python==3.6.3
 - pyopencl
 - pip:
-    - Cython                    
-    - numpy                     
+    - Cython==0.27.3                  
+    - numpy==1.13.3                  
     - progressbar2              
     - scipy                     
     - setuptools
