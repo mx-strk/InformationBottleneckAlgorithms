@@ -1,6 +1,6 @@
 # Information Bottleneck Algorithms for Relevant-Information-Preserving Signal Processing in Python
 
-### Introduction and Motivation
+## Introduction and Motivation
 
 In its pure form, the information bottleneck method is an unsupervised clustering framework which was first proposed in [TPB99].
 Despiting having its origin in machine learning, recently, the information bottleneck method attracted lots of attention in several problems related to communications engineering and digital signal processing.
@@ -11,14 +11,14 @@ All these systems are designed to combine coarse quantization and high performan
 Nevertheless, we noticed that the lack of public available information bottleneck algorithms discourages people to try to transform their signal processing chain into a relevant-information-preserving one.
 Thus, this collection of information bottleneck algorithm is intended to facilitate you, to incorporate the information bottleneck method in your problem.
 
-### Citation
+## Citation
 
 The code is distributed under the MIT license. When using the code for your publication or research please cite this repo as
 
 [SL18] M.Stark, J.Lewandowsky "Information Bottleneck Algorithms in Python", https://goo.gl/QjBTZf
 
 
-### Installation
+## Installation
 
 1. Download and install Python 3.6 (we recommend Anaconda)
 2. Clone the git repository
@@ -30,7 +30,7 @@ The code is distributed under the MIT license. When using the code for your publ
   * [progressbar2](https://pypi.org/project/progressbar2/)
   * cython
 
-### Algorithms and Documentation
+## Algorithms and Documentation
 
 This repository contains the following information bottleneck algorithm:
 1. Agglomerative information bottleneck algorithm [Slo02]
@@ -41,12 +41,25 @@ This repository contains the following information bottleneck algorithm:
 
 A detailed investigation of these algorithm is presented in [HWD17]. A more detailed documentation of all provided functions and a more complete test suite will be available soon.
 
-### How To
-A Jupyter Notebook which interactively explains the usage of the algorithms can be found in the folder "Examples".
-You can also run the Notebooks in your Browser
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/git/https%3A%2F%2Fcollaborating.tuhh.de%2Fcip3725%2Fib_base.git/0a1f4f66a1a3c29ff347b2abc79bb292b0be17ca?filepath=Examples%2FAWGNQuantizer.ipynb)
+## Examples
+Jupyter notebooks which interactively explains the usage of the algorithms can be found in the folder "Examples".
+You can also run the Notebooks in your Browser without any installation!!
 
-### References
+### AWGN Channel Quantizer Design
+In this example we demonstrate how to use the information bottleneck algorithms to build a channel output quantizer for an AWGN channel
+Click here to run the example in your browser: [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/git/https%3A%2F%2Fcollaborating.tuhh.de%2Fcip3725%2Fib_base.git/0a1f4f66a1a3c29ff347b2abc79bb292b0be17ca?filepath=Examples%2FAWGNQuantizer.ipynb)
+
+### Author Classification and Text Clustering
+One of the first proposed application of the information bottleneck method was document clustering. Based on this idea, in this example we investigate the vocabulary of three famous German authors, i.e., Johann Wolfgang von Goethe, Franz Kafka and Thomas Mann.
+Using the information bottleneck method, we demonstrate how to determine word clusters which are very representative for the respective author.
+Click here to run the example in your browser: [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/git/https%3A%2F%2Fcollaborating.tuhh.de%2Fcip3725%2Fib_base.git/0a1f4f66a1a3c29ff347b2abc79bb292b0be17ca?filepath=Examples%2FAWGNQuantizer.ipynb)
+
+### Binary Clustering of the Titanic Dataset 
+(under construction)
+
+
+
+## References
 [TPB99] N. Tishby, F. C. Pereira, and W. Bialek, “The information bottleneck method,” in 37th annual Allerton Conference on Communication, Control, and Computing, 1999, pp. 368–377.
 
 [Slo02] N. Slonim, “The Information Bottleneck Theory and Applications,” Hebrew University of Jerusalem, 2002.
