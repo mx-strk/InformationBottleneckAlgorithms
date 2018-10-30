@@ -13,3 +13,4 @@ dependencies:
     - setuptools
     - matplotlib
     - panda
+    - pandas
