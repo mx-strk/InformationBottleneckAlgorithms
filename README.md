@@ -52,7 +52,9 @@ Click here to run the example in your browser: [![Binder](https://mybinder.org/b
 ### Author Classification and Text Clustering
 One of the first proposed application of the information bottleneck method was document clustering. Based on this idea, in this example we investigate the vocabulary of three famous German authors, i.e., Johann Wolfgang von Goethe, Franz Kafka and Thomas Mann.
 Using the information bottleneck method, we demonstrate how to determine word clusters which are very representative for the respective author.
-Click here to run the example in your browser: [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/git/https%3A%2F%2Fcollaborating.tuhh.de%2Fcip3725%2Fib_base.git/1cacab103c355f4c564c67b352806df51acee9c4?filepath=Examples%2FAuthorClassification.ipynb)
+Click here to run the example in your browser: [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/git/https%3A%2F%2Fcollaborating.tuhh.de%2Fcip3725%2Fib_base.git/447fd804997063a317ab0a7439e524fc305923db?filepath=Examples%2FAuthorClassification.ipynb)
+
+
 ### Binary Clustering of the Titanic Dataset 
 (under construction)
 
