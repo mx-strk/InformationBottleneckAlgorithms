@@ -141,6 +141,15 @@ class lin_sym_sIB(GenericIB):
         #sort back
         self.p_t_given_y[self.sort_indices, :] = p_t_given_y_blown
 
+        p_y = self.p_x_y.sum(1)
+
+        # calculate p(t)  new
+        self.p_t = (self.p_t_given_y * p_y[:, np.newaxis]).sum(0)
+
+        # calculate p(x | t) new
+        self.p_x_given_t = 1 / (self.p_t[:, np.newaxis]) * np.dot(self.p_t_given_y.T, self.p_x_y)
+
+
     def calc_merger_cost(self, border_between_clusters, cur_card_T_):
         """Return the merger cost for putting one event in a cluster. Since this a modified version of the sIB only two
         clusters have to be tested. Which constrains the calculation to two comparisons.
