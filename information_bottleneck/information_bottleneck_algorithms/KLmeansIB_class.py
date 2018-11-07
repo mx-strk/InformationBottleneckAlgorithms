@@ -20,7 +20,7 @@ __doc__="This module contains the KL Means Algorithm"
 
 
 class KLmeansIB(GenericIB):
-    """This class can be used to perform the Agglomerative Information Bottleneck algorithm.
+    """This class can be used to perform the KL-Means Information Bottleneck algorithm.
       Args:
       input parameter
           p_x_y                     input joint pdf, where x is the number of columns and y the number of rows
