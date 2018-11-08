@@ -13,13 +13,47 @@ Thus, this collection of information bottleneck algorithm is intended to facilit
 
 ## Citation
 
-The code is distributed under the MIT license. When using the code for your publication or research please cite this repo as
+The code is distributed under the MIT license. When using the code for your publication or research please cite this repository as
 
 [SL18] M.Stark, J.Lewandowsky "Information Bottleneck Algorithms in Python", https://goo.gl/QjBTZf
 
 
-## Installation
+## Installation (Linux)
 
+1. Download and install Python 3.6 (we recommend [Anaconda](https://www.anaconda.com/download/))
+2. Clone the git repository
+3. Create a new conda environment using the provided **environment.yml**
+```
+conda env create -f environment.yml
+```
+4. Activate the previously generated environment **ib_base_env**
+```
+source activate ib_base_env
+```
+5. Install the **ib_base** package
+```
+python setup.py install
+```
+
+## Installation (Windows)
+1. Download and install Python 3.6 (we recommend [Anaconda](https://www.anaconda.com/download/))
+2. Clone the git repository
+3. Create a new conda environment using the provided **environment_windows.yml**
+```
+conda env create -f environment_windows.yml
+```
+4. Activate the previously generated environment **ib_base_env**
+```
+activate ib_base_env
+```
+5. Install the **ib_base** package
+```
+python setup.py install
+```
+6. Install an OpenCL Driver. Since OpenCL is a heterogeneous language the vendor is not important. We tested the [Intel CPU driver](https://software.intel.com/en-us/articles/opencl-drivers#latest_CPU_runtime) and the AMD SDK also for GPUs.
+
+
+## Installation (Other)
 1. Download and install Python 3.6 (we recommend Anaconda)
 2. Clone the git repository
 3. Run python setup.py install to install the ib_base package.
@@ -29,6 +63,7 @@ The code is distributed under the MIT license. When using the code for your publ
   * mako
   * [progressbar2](https://pypi.org/project/progressbar2/)
   * cython
+
 
 ## Algorithms and Documentation
 
@@ -55,29 +90,26 @@ Using the information bottleneck method, we demonstrate how to determine word cl
 Click here to run the example in your browser: [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/git/https%3A%2F%2Fcollaborating.tuhh.de%2Fcip3725%2Fib_base.git/447fd804997063a317ab0a7439e524fc305923db?filepath=Examples%2FAuthorClassification.ipynb)
 
 
-### Binary Clustering of the Titanic Dataset 
+### Binary Clustering of the Titanic Dataset
 (under construction)
 
 
 
 ## References
-[TPB99] N. Tishby, F. C. Pereira, and W. Bialek, “The information bottleneck method,” in 37th annual Allerton Conference on Communication, Control, and Computing, 1999, pp. 368–377.
 
-[Slo02] N. Slonim, “The Information Bottleneck Theory and Applications,” Hebrew University of Jerusalem, 2002.
+[SLB18c] M. Stark, J. Lewandowsky, and G. Bauch, “Information-Optimum LDPC Decoders with Message Alignment for Irregular Codes,” in 2018 IEEE Global Communications Conference: Signal Processing for Communications (Globecom2018 SPC), Abu Dhabi, United Arab Emirates, 2018.
 
-[LSB16] J. Lewandowsky, M. Stark, and G. Bauch, “Information Bottleneck Graphs for receiver design,” in 2016 IEEE International Symposium on Information Theory (ISIT): IEEE, 2016, pp. 2888–2892.
+[LSB18] J. Lewandowsky, M. Stark and G. Bauch, "A Discrete Information Bottleneck Receiver with Iterative Decision Feedback Channel Estimation", 2018 10th International Symposium on Turbo Codes & Iterative Information Processing (ISTC), 2018.
 
-[LSB16b] J. Lewandowsky, M. Stark, and G. Bauch, “Optimum message mapping LDPC decoders derived from the sum-product algorithm,” in 2016 IEEE International Conference on Communications (ICC).
+[SLB18b] M. Stark, J. Lewandowsky, and G. Bauch, “Information-Bottleneck Decoding of High-Rate Irregular LDPC Codes for Optical Communication Using Message Alignment”, Applied Science. 2018; 8(10):1884
 
 [BLS+18] G. Bauch, J. Lewandowsky, M. Stark, and P. Oppermann, “Information-Optimum Discrete Signal Processing for Detection and Decoding,” in 2018 IEEE 87th Vehicular Technology Conference (IEEE VTC2018-Spring), Porto, Portugal, 2018.
 
 [SSB18] M. Stark, S. A. A. Shah, and G. Bauch, “Polar Code Construction using the Information Bottleneck Method,” in 2018 IEEE Wireless Communications and Networking Conference Workshops (WCNCW): Polar Coding for Future Networks: Theory and Practice (IEEE WCNCW PCFN 2018), Barcelona, Spain, 2018.
 
-[SLB18] M. Stark, J. Lewandowsky, and G. Bauch, “Iterative Message Alignment for Quantized Message Passing between Distributed Sensor Nodes,” in 2018 IEEE 87th Vehicular Technology Conference (IEEE VTC2018-Spring), Porto, Portugal, 2018.
+[SLB18a] M. Stark, J. Lewandowsky, and G. Bauch, “Iterative Message Alignment for Quantized Message Passing between Distributed Sensor Nodes,” in 2018 IEEE 87th Vehicular Technology Conference (IEEE VTC2018-Spring), Porto, Portugal, 2018.
 
 [LB18] J. Lewandowsky and G. Bauch, “Information-Optimum LDPC Decoders Based on the Information Bottleneck Method,” IEEE Access, vol. 6, pp. 4054–4071, 2018.
-
-[SLB18] M. Stark, J. Lewandowsky, and G. Bauch, “Information-Optimum LDPC Decoders with Message Alignment for Irregular Codes,” in 2018 IEEE Global Communications Conference: Signal Processing for Communications (Globecom2018 SPC), Abu Dhabi, United Arab Emirates, 2018.
 
 [SS17] D. J. Strouse and D. J. Schwab, “The Deterministic Information Bottleneck,” (eng), Neural computation, vol. 29, no. 6, pp. 1611–1630, 2017.
 
@@ -86,7 +118,15 @@ Click here to run the example in your browser: [![Binder](https://mybinder.org/b
 [KK17] D. Kern and V. Kuehn, “On compress and forward with multiple carriers in the 3-node relay channel exploiting information bottleneck graphs,” in Proceedings 11th International ITG Conference on Systems,
 Communications and Coding, Feb 2017, pp. 1–6.
 
-[CK16] D. Chen and V. Kuehn, “Alternating information bottleneck optimization for the compression in the uplink of c-ran,” in 2016 IEEE International Conference on Communications (ICC), May 2016, pp. 1–7.
-
 [K17] B. M. Kurkoski, “On the relationship between the KL means algorithm and the information bottleneck method,” in SCC 2017; 11th International ITG Conference on Systems, Communications and Coding, Feb
 2017, pp. 1–6.
+
+[CK16] D. Chen and V. Kuehn, “Alternating information bottleneck optimization for the compression in the uplink of c-ran,” in 2016 IEEE International Conference on Communications (ICC), May 2016, pp. 1–7.
+
+[LSB16] J. Lewandowsky, M. Stark, and G. Bauch, “Information Bottleneck Graphs for receiver design,” in 2016 IEEE International Symposium on Information Theory (ISIT): IEEE, 2016, pp. 2888–2892.
+
+[LSB16b] J. Lewandowsky, M. Stark, and G. Bauch, “Optimum message mapping LDPC decoders derived from the sum-product algorithm,” in 2016 IEEE International Conference on Communications (ICC).
+
+[Slo02] N. Slonim, “The Information Bottleneck Theory and Applications,” Hebrew University of Jerusalem, 2002.
+
+[TPB99] N. Tishby, F. C. Pereira, and W. Bialek, “The information bottleneck method,” in 37th annual Allerton Conference on Communication, Control, and Computing, 1999, pp. 368–377.
