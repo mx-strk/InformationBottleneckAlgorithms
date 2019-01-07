@@ -73,7 +73,7 @@ class sIB(GenericIB):
         # run for-loop for each number of run
         for run in range(0, self.nror):
             self.printProgress(run, self.nror, prefix='Run:')
-            self.p_t_given_y = np.zeros((cardinality_Y, self.cardinality_T + 1))
+            self.p_t_given_y = np.zeros((cardinality_Y, self.cardinality_T + 1),dtype=int)
             self.p_t_given_y[:int(neye * self.cardinality_T), :self.cardinality_T] = np.tile(np.eye(self.cardinality_T), (neye, 1))
 
             self.p_t_given_y[cardinality_Y - remainder:, 0] = np.ones(remainder)
@@ -81,10 +81,9 @@ class sIB(GenericIB):
 
             # Processing
             init_mat = self.p_t_given_y
-            end_mat = np.zeros((cardinality_Y, self.cardinality_T + 1))
+            end_mat = np.zeros((cardinality_Y, self.cardinality_T + 1),dtype=int)
             ind_min = 0
-            first_iter = True
-
+            
             # repeat until stable solution found
             while not np.array_equal(init_mat, end_mat):
                 self.p_t = (self.p_t_given_y * p_y[:, np.newaxis]).sum(0)
@@ -105,35 +104,12 @@ class sIB(GenericIB):
                         # previous new cluster
                         # special dot test
 
-
-
-                        if first_iter:
-                            self.p_t = (self.p_t_given_y[:, :cur_card_T] * p_y[:, np.newaxis]).sum(0)
-                            self.p_x_and_t = np.dot(self.p_t_given_y[:, :cur_card_T].T, self.p_x_y)
-                            self.p_x_given_t = 1 / (self.p_t[:cur_card_T, np.newaxis]) * self.p_x_and_t
-                            first_iter = True
-
-                        else:
-                            rel_vec = np.array([old_cluster, -1, ind_min])
-                            # add mass in temp cluster and in previously chosen cluster
-                            self.p_t[-1] = p_y[i]
-                            self.p_t[ind_min] += p_y[i-1]
-                            self.p_t[old_cluster] -= p_y[i]
-
-                            #self.p_t[rel_vec] = (self.p_t_given_y[:, rel_vec] * p_y[:, np.newaxis]).sum(0)
-
-                            self.p_x_and_t[-1, :] = self.p_x_y[i, :]
-                            self.p_x_and_t[ind_min, :] += self.p_x_y[i - 1, :]
-                            self.p_x_and_t[old_cluster, :] -= self.p_x_y[i, :]
-
-                            #self.p_x_and_t[rel_vec] = np.dot( self.p_t_given_y[:, rel_vec].T, self.p_x_y)
-                            self.p_x_given_t[rel_vec] = 1 / (self.p_t[rel_vec, np.newaxis]) * self.p_x_and_t[rel_vec, :]
-
-                        #ind_min, costs = inf_c.calc_merger_cost_sIB(self.p_t, self.p_x_given_t)
-                        #merger_costs_vec_c = inf_c.calc_merger_cost_sIB(self.p_t, self.p_x_given_t)
+                        self.p_t = (self.p_t_given_y[:, :cur_card_T] * p_y[:, np.newaxis]).sum(0)
+                        self.p_x_and_t = np.dot(self.p_t_given_y[:, :cur_card_T].T, self.p_x_y)
+                        self.p_x_given_t = 1 / (self.p_t[:cur_card_T, np.newaxis]) * self.p_x_and_t
+                
                         merger_costs_vec = self.calc_merger_cost()
-                        #if np.linalg.norm(merger_costs_vec-merger_costs_vec_c) >1e-7:
-                        #    raise RuntimeError('Kacke')
+
 
                         ind_min = np.argmin(merger_costs_vec)
                         self.p_t_given_y[i, ind_min] = 1
