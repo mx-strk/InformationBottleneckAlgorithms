@@ -72,7 +72,8 @@ This repository contains the following information bottleneck algorithm:
 2. Sequential information bottleneck algorithm [Slo02]
 3. Symmetric information bottleneck algorithm (and variants) [LB18]
 4. KL-Means information bottleneck algorithm [K17]
-5. (planned) Deterministic information bottleneck algorithm [SS17]
+5. Parametric information bottleneck algortihm [SLB19]
+6. (planned) Deterministic information bottleneck algorithm [SS17]
 
 A detailed investigation of these algorithm is presented in [HWD17]. A more detailed documentation of all provided functions and a more complete test suite will be available soon.
 
@@ -96,6 +97,9 @@ Click here to run the example in your browser: [![Binder](https://mybinder.org/b
 
 
 ## References
+
+[SLB19] M. Stark, J. Lewandowsky, G. Bauch: A Parametric Information Bottleneck Algorithm for Gaussian Random Variables and Gaussian Mixtures. SCC 2019
+
 
 [SLB18c] M. Stark, J. Lewandowsky, and G. Bauch, “Information-Optimum LDPC Decoders with Message Alignment for Irregular Codes,” in 2018 IEEE Global Communications Conference: Signal Processing for Communications (Globecom2018 SPC), Abu Dhabi, United Arab Emirates, 2018.
 
